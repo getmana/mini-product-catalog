@@ -1,11 +1,12 @@
 'use server';
 
 import { getErrorMessage } from '@/utils';
-import { Product } from './types';
+import { ProductsListData } from './types';
+import { API_URL } from './constants';
 
-export const fetchAllProducts = async (): Promise<{ data: Product[] | null; message: string | null }> => {
+export const fetchAllProducts = async (): Promise<ProductsListData> => {
     try {
-        const response = await fetch(`${process.env.API_URL}/products`);
+        const response = await fetch(`${API_URL}/products`);
         const data = await response.json();
         if (data.message) {
             return { data: null, message: data.message };
