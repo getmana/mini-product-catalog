@@ -1,3 +1,9 @@
+import Link from 'next/link';
+
 export const Header = () => {
-    return <header>header</header>;
+    return (
+        <header>
+            <Link href="/">HOME</Link>
+        </header>
+    );
 };
