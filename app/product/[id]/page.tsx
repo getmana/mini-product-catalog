@@ -1,13 +1,12 @@
 import Image from 'next/image';
 import { Card, CardTitle, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { fetchProductById, type Product } from '@/api';
 import { ErrorMessage } from '@/components/ErrorMessage';
+import { AddProductButton } from '@/components/AddProductButton';
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const { data, message } = await fetchProductById(id);
-    console.log('product==', data, message);
 
     if (message) {
         return <ErrorMessage message={message} />;
@@ -34,9 +33,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <Button size="lg" className="w-full">
-                        Add to cart
-                    </Button>
+                    <AddProductButton id={id} price={price} />
                 </CardFooter>
             </Card>
         </div>
